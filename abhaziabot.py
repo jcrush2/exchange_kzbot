@@ -61,7 +61,7 @@ def addlove(msg):
 
 	
 def khvtrip(msg):
-	chanel ="Задайте вопрос связанный с Хабаровском, а в @khvtrip постараются вам ответить."
+	chanel ="Задайте вопрос связанный с Абхазией, а в @khvtrip постараются вам ответить."
 	bot.send_message(msg.chat.id, f"{chanel}", parse_mode="HTML")
 	main(msg)
 	
@@ -108,7 +108,7 @@ def serv(msg):
 	button8 = telebot.types.InlineKeyboardButton(text="Параплан", callback_data="Экстренные службы") 
 
 	markup.add(button3, button1,button5, button2, button4, button6,button7,button8)
-	bot.send_message(chat_id=msg.chat.id, text="В Хабаровске:️", reply_markup=markup)
+	bot.send_message(chat_id=msg.chat.id, text="В Абхазии:️", reply_markup=markup)
 @bot.callback_query_handler(func=lambda call: True)
 def longname(call):
 	a = datetime.datetime.today()
@@ -241,7 +241,7 @@ def all_messages(msg):
 	if msg.text == "Прислaть новость":
 		addnews(msg)
 		return
-	if msg.text == "ℹ️ Сервисы":
+	if msg.text == "ℹ️ Услуги":
 		serv(msg)
 		return
 	if msg.text == "❤️ Знакомства" or msg.text == "❤️ Любовь":
