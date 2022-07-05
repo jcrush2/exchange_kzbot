@@ -32,7 +32,7 @@ def main(msg):
 	newsadd = telebot.types.KeyboardButton(text="🏖 Экскурсии")
 	cat = telebot.types.KeyboardButton(text="🚌️ Туры")
 	loveadd = telebot.types.KeyboardButton(text="🏠️ Жилье")
-	keyboard.add(khvtrip, cat, servise, newsadd, loveadd)
+	keyboard.add(newsadd, cat, loveadd, khvtrip, servise)
 	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
 	
 	selected_user = Users.select().where(
@@ -98,14 +98,14 @@ def reklama(msg):
 @bot.message_handler(commands=["serv","help"])
 def serv(msg):
 	markup = telebot.types.InlineKeyboardMarkup()
-	button1 = telebot.types.InlineKeyboardButton(text="Погода", callback_data="Погода") 
-	button2 = telebot.types.InlineKeyboardButton(text="Кино", callback_data="Кино")
-	button5 = telebot.types.InlineKeyboardButton(text="Реклама", callback_data="Реклама")
-	button3 = telebot.types.InlineKeyboardButton(text="Новости", callback_data="Новости")
+	button1 = telebot.types.InlineKeyboardButton(text="Водопады", callback_data="Погода") 
+	button2 = telebot.types.InlineKeyboardButton(text="Смотровые", callback_data="Кино")
+	button5 = telebot.types.InlineKeyboardButton(text="Чача", callback_data="Реклама")
+	button3 = telebot.types.InlineKeyboardButton(text="Вино", callback_data="Новости")
 	button4 = telebot.types.InlineKeyboardButton(text="Клубы", callback_data="Клубы") 
-	button6 = telebot.types.InlineKeyboardButton(text="Фонтаны", callback_data="Фонтаны")
-	button7 = telebot.types.InlineKeyboardButton(text="Поздравления", callback_data="нг")
-	button8 = telebot.types.InlineKeyboardButton(text="Экстренные службы", callback_data="Экстренные службы") 
+	button6 = telebot.types.InlineKeyboardButton(text="Пляжи", callback_data="Фонтаны")
+	button7 = telebot.types.InlineKeyboardButton(text="Кони", callback_data="нг")
+	button8 = telebot.types.InlineKeyboardButton(text="Параплан", callback_data="Экстренные службы") 
 
 	markup.add(button3, button1,button5, button2, button4, button6,button7,button8)
 	bot.send_message(chat_id=msg.chat.id, text="В Хабаровске:️", reply_markup=markup)
@@ -170,7 +170,7 @@ def name_pozd(msg):
 	if msg.text == "Прислaть новость":
 		addnews(msg)
 		return
-	if msg.text == "ℹ️ Сервисы":
+	if msg.text == "ℹ️ Услуги":
 		serv(msg)
 		return
 	if msg.text == "❤️ Знакомства" or msg.text == "❤️ Любовь":
