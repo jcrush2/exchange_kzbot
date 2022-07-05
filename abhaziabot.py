@@ -4,8 +4,6 @@ import hashlib
 import string
 import os
 
-import urllib.request
-import json
 
 
 from flask import Flask, request
@@ -233,7 +231,7 @@ def donate(msg):
 	
 	bot.edit_message_text(
 	chat_id=-1001787255599,
-	message_id=4,
+	message_id=6,
 	text="ℹ️ Туры, экскурсии....", parse_mode="HTML", reply_markup=markup)
     
 @bot.message_handler(content_types=['text', 'document', 'photo', 'audio', 'video','voice'])
@@ -288,21 +286,7 @@ def all_messages(msg):
 
 		
 	
-def exoooy(text,intro):
-	headers = {
-    'Content-Type': 'application/json',
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) AppleWebKit/605.1.15 '
-                  '(KHTML, like Gecko) Version/14.1.1 Safari/605.1.15',
-    'Origin': 'https://yandex.ru',
-    'Referer': 'https://yandex.ru/',}
 
-	API_URL = 'https://yandex.ru/lab/api/yalm/text3'
-	payload = {"query":text, "intro":intro, "filter":1}
-	params = json.dumps(payload).encode('utf-8')
-	req = urllib.request.Request(API_URL, data=params, headers=headers)
-	response = urllib.request.urlopen(req)
-	ya=json.loads(response.read().decode('utf-8'))
-	return ya["text"]
 
 # bot.polling(none_stop=True)
 
