@@ -144,15 +144,13 @@ def longname(call):
 
 @bot.message_handler(commands=["stat"])
 def stat(msg):
-	if msg.from_user.id not in config.gods:
-		return
+
 	count = Users.select().count()
 	bot.send_message(msg.chat.id, count, parse_mode="HTML")
 
 @bot.message_handler(commands=["s"])
 def send(msg):
-	if msg.from_user.id not in config.gods:
-		return
+
 	if len(msg.text.split()) == 1:
 		return
 	selected_user = Users.select() 
