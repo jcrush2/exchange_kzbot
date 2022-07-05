@@ -234,7 +234,7 @@ def donate(msg):
     
 @bot.message_handler(content_types=['text', 'document', 'photo', 'audio', 'video','voice'])
 def all_messages(msg):
-	TO_CHAT_ID= -542531596
+	TO_CHAT_ID= -1001378480179
 		
 	if msg.text == "Прислaть новость":
 		addnews(msg)
