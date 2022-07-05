@@ -27,13 +27,13 @@ def start(msg):
 @bot.message_handler(commands=["main","OTMEHA"])
 def main(msg):
 	keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-	khvtrip = telebot.types.KeyboardButton(text="⁉️ Вопрос")
+	khvtrip = telebot.types.KeyboardButton(text="🚕 Трансфер")
 	servise = telebot.types.KeyboardButton(text="ℹ️ Услуги")
-	newsadd = telebot.types.KeyboardButton(text="Экскурсии")
-	cat = telebot.types.KeyboardButton(text="📂️ Туры")
-	loveadd = telebot.types.KeyboardButton(text="❤️ Заказ")
+	newsadd = telebot.types.KeyboardButton(text="🏖 Экскурсии")
+	cat = telebot.types.KeyboardButton(text="🚌️ Туры")
+	loveadd = telebot.types.KeyboardButton(text="🏠️ Жилье")
 	keyboard.add(khvtrip, cat, servise, newsadd, loveadd)
-	bot.send_message(msg.chat.id, "Отправьте сообщение ⬇️", reply_markup=keyboard)
+	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
 	
 	selected_user = Users.select().where(
 		Users.userid == msg.from_user.id)
