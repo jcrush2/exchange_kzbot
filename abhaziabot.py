@@ -57,7 +57,7 @@ def khvtrip(msg):
 	markup.add(button)
 	
 
-	sent =bot.send_photo(msg.chat.id, "https://sun1.57354.userapi.com/impg/XpbtcLnjQDi8pxve6VfZa02gSC8gXfO7xnCFGg/o9euaZtgBvc.jpg",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
+	sent =bot.send_photo(msg.chat.id, f"https://www.calend.ru/img/export/informer_names.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
 
 	
 @bot.message_handler(commands=["tours"])
