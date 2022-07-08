@@ -29,7 +29,7 @@ def main(msg):
 	servise = telebot.types.KeyboardButton(text="ℹ️ Услуги")
 	newsadd = telebot.types.KeyboardButton(text="🏖 Экскурсии")
 	loveadd = telebot.types.KeyboardButton(text="🏠️ Жилье")
-	tel = telebot.types.KeyboardButton(text="☎️ Обратный звонок")
+	tel = telebot.types.KeyboardButton(text="☎️ Звонок")
 	keyboard.add( newsadd, loveadd, khvtrip, servise,tel)
 	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
 	
@@ -45,7 +45,7 @@ def insert_user(user):
 
 @bot.message_handler(commands=["dom"])
 def addlove(msg):
-	chanel ="Аренда жилья️"
+	chanel ="<b>Аренда жилья️</b>\n\n• Комнаты\n• Квартиры\n• Апартаменты\n• Гостевые дома"
 	markup = telebot.types.InlineKeyboardMarkup()
 	button = telebot.types.InlineKeyboardButton(text="Каталог апартаментов", url="https://vk.com/market-67677674?section=album_10") 
 	markup.add(button)
@@ -54,20 +54,21 @@ def addlove(msg):
 
 @bot.message_handler(commands=["taxi"])
 def khvtrip(msg):
-	chanel ="Стоимость трансфера - от 1000р."
+	chanel ="Встретим и привезем. Стоимость трансфера - от 1000р."
 	markup = telebot.types.InlineKeyboardMarkup()
-	button = telebot.types.InlineKeyboardButton(text="Заказать", url="https://vk.com/mao_tour?w=product-67677674_7618425") 
+	button = telebot.types.InlineKeyboardButton(text="Заказать трансфер", url="https://vk.com/mao_tour?w=product-67677674_7618425") 
 	markup.add(button)
 	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
 
 	
 @bot.message_handler(commands=["tours"])
 def addnews(msg):
-	chanel ="Туры и экскурсии"
+	chanel ="<b>Туры и экскурсии</b>\n\n• Скальный монастырь Отхара + Форелевое хозяйство\n\n• Горячие источники + Парк Львов\n\n• Конные прогулки к водопадам\n\n• Джип тур - Гегский водопад +оз.Рица + Перевал Пыв\n\n• Джип тур на г. Мамзышха + 3 смотровые площадки\n\n• Тур на оз. Рица + оз. Малая Рица\n\n• Джип тур на Гегский водопад + оз. Рица\n\n• Тур по трём смотровым площадкам г.Гагра\n\n• Заброшенный город Акармара + 3 водопада + Горячий источник Кындык\n\n• Тур в Хашупсинский каньон + Белые скалы\n\n• Тур в Пицунду + Мюссерский заповедник\n\n• Тур на озеро "Рица"\n\n• Тур в Новый Афон\n\n• Тур в Черниговку + Кындык"
 	markup = telebot.types.InlineKeyboardMarkup()
-	button = telebot.types.InlineKeyboardButton(text="Заказать", url="https://vk.com/market-67677674?section=album_11") 
+	button = telebot.types.InlineKeyboardButton(text="Заказать тур", url="https://vk.com/market-67677674?section=album_11") 
 	markup.add(button)
 	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
+	
 def tel(msg):
 	bot.send_message(msg.chat.id, "Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇", parse_mode="HTML")
 
@@ -169,7 +170,7 @@ def all_messages(msg):
 	if msg.text == "🚕 Трансфер":
 		khvtrip(msg)
 		return
-	if msg.text == "☎️ Обратный звонок":
+	if msg.text == "☎️ Звонок":
 		tel(msg)
 		return
 		
