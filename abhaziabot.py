@@ -15,8 +15,6 @@ import config
 
 TELEGRAM_API = os.environ["telegram_token"]
 bot = telebot.TeleBot(TELEGRAM_API)
-
-reklama_post = "Реклама на канале @khv_news, а также в Хабаровских группах обсуждается индивидуально, обязательным условием является пометка поста тегом #реклама. \n\n Сообщением пришлите картинку, пост и желаемое время публикации. \n\n Для связи по рекламе: @jcrush"
     
 @bot.message_handler(commands=["start"])
 def start(msg):
@@ -54,43 +52,23 @@ def addlove(msg):
 	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
 	
 
-	
+@bot.message_handler(commands=["taxi"])
 def khvtrip(msg):
 	chanel ="Стоимость трансфера - от 1000р."
+	markup = telebot.types.InlineKeyboardMarkup()
 	button = telebot.types.InlineKeyboardButton(text="Заказать", url="https://vk.com/mao_tour?w=product-67677674_7618425") 
 	markup.add(button)
 	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
 
 	
-@bot.message_handler(commands=["news"])
+@bot.message_handler(commands=["tours"])
 def addnews(msg):
 	chanel ="Туры и экскурсии"
+	markup = telebot.types.InlineKeyboardMarkup()
 	button = telebot.types.InlineKeyboardButton(text="Заказать", url="https://vk.com/market-67677674?section=album_11") 
 	markup.add(button)
 	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
 
-	
-
-@bot.message_handler(commands=["chats","bots","channels"])
-def chats(msg):
-	chanel = "🤖 Бот Хабаровска @khvbot\
-\n\n• <b>Чаты и группы Хабаровска</b>\
-\n\n@khvchat - самый крупный чат Хабаровска\
-\n\n@dvchat - чат Дальнего Востока\
-\n\n@market27 - доска объявлений\
-\n\n@khvjob - работа: вакансии и резюме\
-\n\n<b>• Каналы Хабаровска</b>\
-\n\n@khv_news - куда сходить, актуальные новости Хабаровска\
-\n\n@love_khv - знакомства\
-\n\n@khvtrip - знатоки Хабаровска (где, что, как: вопросы и ответы)\
-\n\n@j_crush - блог о Хабаровске\
-\n\n@khabara_ru - объявления Хабаровск\
-\n\n@stfw_ru - IT-новости"
-	bot.send_message(msg.chat.id, f"{chanel}", parse_mode="HTML")
-	
-@bot.message_handler(commands=["reklama"])
-def reklama(msg):
-	bot.send_message(msg.chat.id, reklama_post, parse_mode="HTML")
 
 @bot.message_handler(commands=["serv","help"])
 def serv(msg):
@@ -131,9 +109,7 @@ def longname(call):
 
 	if call.data == "Экстренные службы":
 		bot.send_message(call.message.chat.id, f"<a href='https://khabara.ru/tel.html?{a}'>⚠️</a>", parse_mode="HTML")
-	if call.data == "Реклама":
-		bot.send_message(call.message.chat.id, reklama_post, parse_mode="HTML")
-		
+
 	if call.data == "delete":
 		bot.send_message(call.message.chat.id, f"<a href='tg://user?id=55910350'>💰</a> Удалить анкету в знакомствах 30р. Счет для <b>{call.from_user.first_name}</b>:\n<a href='https://qiwi.com/payment/form/99999?amount=30&extra[%27accountType%27]=nickname&extra[%27account%27]=JCRUSH&extra[%27comment%27]=Love_Khv{call.from_user.id}&blocked[2]=comment&blocked[1]=account'>💳 Оплатить</a> (ID {call.from_user.id})", parse_mode="HTML")
 		
