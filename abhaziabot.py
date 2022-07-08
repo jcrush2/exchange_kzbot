@@ -3,9 +3,6 @@ import datetime
 import hashlib
 import string
 import os
-
-
-
 from flask import Flask, request
 import peewee as pw
 import telebot
@@ -18,7 +15,7 @@ bot = telebot.TeleBot(TELEGRAM_API)
     
 @bot.message_handler(commands=["start"])
 def start(msg):
-	bot.send_message(msg.chat.id, "МАО-ТУР\n\n✅ Индивидуальные туры\n✅ Экскурсии\n✅ Трансфер\n✅ Проживание",parse_mode="HTML")
+	bot.send_message(msg.chat.id, "<b>МАО-ТУР</b>\n\n✅ Индивидуальные туры\n✅ Экскурсии\n✅ Трансфер\n✅ Проживание\n\nКомпания МАО ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!",parse_mode="HTML")
 	main(msg)
 	
 		
@@ -58,7 +55,8 @@ def khvtrip(msg):
 	markup = telebot.types.InlineKeyboardMarkup()
 	button = telebot.types.InlineKeyboardButton(text="Заказать трансфер", url="https://vk.com/mao_tour?w=product-67677674_7618425") 
 	markup.add(button)
-	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", parse_mode="HTML", reply_markup=markup)
+	
+	bot.send_photo(msg.chat.id, f"https://sun1.57354.userapi.com/impg/XpbtcLnjQDi8pxve6VfZa02gSC8gXfO7xnCFGg/o9euaZtgBvc.jpg", caption = f"{chanel}️", parse_mode="HTML", reply_markup=markup)
 
 	
 @bot.message_handler(commands=["tours"])
