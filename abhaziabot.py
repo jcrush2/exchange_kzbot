@@ -30,7 +30,7 @@ def main(msg):
 	newsadd = telebot.types.KeyboardButton(text="🏖 Экскурсии")
 	loveadd = telebot.types.KeyboardButton(text="🏠️ Жилье")
 	tel = telebot.types.KeyboardButton(text="☎️ Обратный звонок")
-	keyboard.add( newsadd, loveadd, khvtrip, servise)
+	keyboard.add( newsadd, loveadd, khvtrip, servise,tel)
 	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
 	
 	selected_user = Users.select().where(
