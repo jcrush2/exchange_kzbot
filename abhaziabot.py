@@ -16,7 +16,7 @@ bot = telebot.TeleBot(TELEGRAM_API)
 @bot.message_handler(commands=["start"])
 def start(msg):
 	bot.send_message(msg.chat.id, "<b>МАО-ТУР</b>\n\n✅ Индивидуальные туры\n✅ Экскурсии\n✅ Трансфер\n✅ Проживание\n\nКомпания МАО ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!",parse_mode="HTML")
-	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
+	
 	main(msg)
 	
 		
@@ -29,7 +29,7 @@ def main(msg):
 	loveadd = telebot.types.KeyboardButton(text="🏠️\nЖилье")
 	tel = telebot.types.KeyboardButton(text="☎️ Звонок")
 	keyboard.add( newsadd, loveadd, khvtrip, servise,tel)
-	
+	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
 	
 	selected_user = Users.select().where(
 		Users.userid == msg.from_user.id)
