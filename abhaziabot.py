@@ -22,10 +22,10 @@ def start(msg):
 @bot.message_handler(commands=["main"])
 def main(msg):
 	keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-	khvtrip = telebot.types.KeyboardButton(text="🚕 Трансфер")
+	khvtrip = telebot.types.KeyboardButton(text="🚕\nТрансфер")
 	servise = telebot.types.KeyboardButton(text="ℹ️ О компании")
-	newsadd = telebot.types.KeyboardButton(text="🏖 Экскурсии")
-	loveadd = telebot.types.KeyboardButton(text="🏠️ Жилье")
+	newsadd = telebot.types.KeyboardButton(text="🏖\nЭкскурсии")
+	loveadd = telebot.types.KeyboardButton(text="🏠️\nЖилье")
 	tel = telebot.types.KeyboardButton(text="☎️ Звонок")
 	keyboard.add( newsadd, loveadd, khvtrip, servise,tel)
 	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
