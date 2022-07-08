@@ -20,7 +20,7 @@ reklama_post = "Реклама на канале @khv_news, а также в Х�
     
 @bot.message_handler(commands=["start"])
 def start(msg):
-	bot.send_message(msg.chat.id, "Делитесь новостями, присылайте фото, знакомьтесь и общайтесь, а наш Бот в этом вам поможет!")
+	bot.send_message(msg.chat.id, "✅ Индивидуальные туры\n✅ Экскурсии\n✅ Трансфер\n✅ Проживание")
 	main(msg)
 	
 		
@@ -30,9 +30,9 @@ def main(msg):
 	khvtrip = telebot.types.KeyboardButton(text="🚕 Трансфер")
 	servise = telebot.types.KeyboardButton(text="ℹ️ Услуги")
 	newsadd = telebot.types.KeyboardButton(text="🏖 Экскурсии")
-	cat = telebot.types.KeyboardButton(text="🚌️ Туры")
+
 	loveadd = telebot.types.KeyboardButton(text="🏠️ Жилье")
-	keyboard.add(cat, newsadd, loveadd, khvtrip, servise)
+	keyboard.add( newsadd, loveadd, khvtrip, servise)
 	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
 	
 	selected_user = Users.select().where(
@@ -61,7 +61,7 @@ def addlove(msg):
 
 	
 def khvtrip(msg):
-	chanel ="Задайте вопрос связанный с Абхазией, а в @khvtrip постараются вам ответить."
+	chanel ="Стоимость трансфера - от 1000р."
 	bot.send_message(msg.chat.id, f"{chanel}", parse_mode="HTML")
 	main(msg)
 	
@@ -164,62 +164,7 @@ def send(msg):
 			continue
 
 
-def name_pozd(msg):
-	if msg.text == "Прислaть новость":
-		addnews(msg)
-		return
-	if msg.text == "ℹ️ Услуги":
-		serv(msg)
-		return
-	if msg.text == "❤️ Знакомства" or msg.text == "❤️ Любовь":
-		addlove(msg)
-		return
-	if msg.text == "📂️ Группы":
-		chats(msg)
-		return
-	if msg.text == "⁉️ Вопрос":
-		khvtrip(msg)
-		return
-	bot.reply_to(msg, f"<i>{exoooy(msg.text, 20)}</i>", parse_mode="HTML")
-	return
-	
-def love_foto(msg):
-	if msg.text == "Прислaть новость":
-		addnews(msg)
-		return
-	if msg.text == "ℹ️ Сервисы":
-		serv(msg)
-		return
-	if msg.text == "❤️ Знакомства" or msg.text == "❤️ Любовь":
-		addlove(msg)
-		return
-	if msg.text == "📂️ Группы":
-		chats(msg)
-		return
-	if msg.text == "⁉️ Вопрос":
-		khvtrip(msg)
-		return
-		
-	if msg.text == "/OTMEHA":
-		main(msg)
-		return
 
-	bot.forward_message(-542531596, msg.chat.id, msg.message_id)
-	bot.send_message(-542531596, f"От: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
-	if msg.document:
-		sent = bot.send_message(msg.chat.id, text="⚠️ Ошибка! Фото должно быть отправленно через галерею, повторите ⬇ или нажмите /OTMEHA" , parse_mode="HTML")
-		bot.register_next_step_handler(sent, love_foto)
-		return
-	if msg.caption ==None:
-		sent = bot.send_message(msg.chat.id, text="⚠️ Ошибка! Пришлите свое фото и добавьте в подпись инфу о себе, контакты ⬇ или нажмите /OTMEHA" , parse_mode="HTML")
-		bot.register_next_step_handler(sent, love_foto)
-		return
-		
-	else:
-		bot.send_photo(msg.chat.id, msg.photo[0].file_id, caption = f"<b>{msg.from_user.first_name}</b>: {msg.caption}\n\nВаша анкета отправлена на модерацию...", parse_mode="HTML")
-		
-
-	return
 	
 @bot.message_handler(commands=["trip"])
 def donate(msg):
@@ -248,29 +193,13 @@ def all_messages(msg):
 	if msg.text == "📂️ Группы":
 		chats(msg)
 		return
-	if msg.text == "⁉️ Вопрос":
+	if msg.text == "🚕 Трансфер":
 		khvtrip(msg)
 		return
 		
 
 	if msg.chat.id == TO_CHAT_ID:
-		if msg.text.lower() == "/вопрос":
-			bot.send_message(-1001310162579,f'⁉️ {msg.reply_to_message.text}', parse_mode="HTML")
-		if msg.text.lower() == "/l":
-			if msg.reply_to_message.caption !=None:
-				if msg.reply_to_message.forward_sender_name!=None:
-					bot.send_photo(-1001099972307, msg.reply_to_message.photo[0].file_id, caption = f"<b>{msg.reply_to_message.forward_sender_name}</b>: {msg.reply_to_message.caption}", parse_mode="HTML")
-				else:
-					bot.send_photo(-1001099972307, msg.reply_to_message.photo[0].file_id, caption = f"<b>{msg.reply_to_message.forward_from.first_name}</b>: {msg.reply_to_message.caption}\n\n<a href='tg://user?id={msg.reply_to_message.forward_from.id}'>📝 Написать</a>", parse_mode="HTML")
-			else:
-				if msg.reply_to_message.caption ==None:
-					bot.send_photo(-1001099972307, msg.reply_to_message.photo[0].file_id, caption = f"<b>{msg.reply_to_message.forward_from.first_name}</b>: {msg.reply_to_message.caption}\n\n<a href='tg://user?id={msg.reply_to_message.forward_from.id}'>📝 Написать</a>", parse_mode="HTML")
-					
-				if msg.reply_to_message.forward_sender_name!=None:
-					bot.send_message(-1001099972307, f"<b>{msg.reply_to_message.forward_sender_name}</b>: {msg.reply_to_message.text}", parse_mode="HTML")
-				else:
-					bot.send_message(-1001099972307, f"<b>{msg.reply_to_message.forward_from.first_name}</b>: {msg.reply_to_message.text}\n\n<a href='tg://user?id={msg.reply_to_message.forward_from.id}'>📝 Написать</a>", parse_mode="HTML")
-		else:
+
 			bot.copy_message(message_id=msg.message_id,chat_id=msg.reply_to_message.forward_from.id,from_chat_id=msg.chat.id)
 			bot.send_message(TO_CHAT_ID, "отправлено")
 	else:
