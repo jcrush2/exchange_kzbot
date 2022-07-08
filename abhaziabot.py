@@ -24,7 +24,7 @@ def start(msg):
 	main(msg)
 	
 		
-@bot.message_handler(commands=["main","OTMEHA"])
+@bot.message_handler(commands=["main"])
 def main(msg):
 	keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 	khvtrip = telebot.types.KeyboardButton(text="🚕 Трансфер")
@@ -60,7 +60,7 @@ def khvtrip(msg):
 	button = telebot.types.InlineKeyboardButton(text="Заказать", url="https://vk.com/mao_tour?w=product-67677674_7618425") 
 	markup.add(button)
 	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
-	main(msg)
+
 	
 @bot.message_handler(commands=["news"])
 def addnews(msg):
@@ -68,7 +68,7 @@ def addnews(msg):
 	button = telebot.types.InlineKeyboardButton(text="Заказать", url="https://vk.com/market-67677674?section=album_11") 
 	markup.add(button)
 	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
-	main(msg)
+
 	
 
 @bot.message_handler(commands=["chats","bots","channels"])
