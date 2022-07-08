@@ -62,7 +62,7 @@ def khvtrip(msg):
 def about(msg):
 	chanel ="Компания МАО ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!"
 	
-	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/9e773eb447e1899938642.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
+	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/9e773eb447e1899938642.png",caption=f"{chanel}️", parse_mode="HTML")
 
 	
 @bot.message_handler(commands=["tours"])
