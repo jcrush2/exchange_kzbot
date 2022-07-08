@@ -46,7 +46,7 @@ def addlove(msg):
 	markup = telebot.types.InlineKeyboardMarkup()
 	button = telebot.types.InlineKeyboardButton(text="Каталог апартаментов", url="https://vk.com/market-67677674?section=album_10") 
 	markup.add(button)
-	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
+	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/1fbe01e96aea7ef0aeb7e.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
 	
 
 @bot.message_handler(commands=["taxi"])
@@ -65,7 +65,7 @@ def addnews(msg):
 	markup = telebot.types.InlineKeyboardMarkup()
 	button = telebot.types.InlineKeyboardButton(text="Заказать тур", url="https://vk.com/market-67677674?section=album_11") 
 	markup.add(button)
-	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", parse_mode="HTML", reply_markup=markup)
+	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/1a3b65f2fd070569f5760.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
 	
 def tel(msg):
 	bot.send_message(msg.chat.id, "Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇", parse_mode="HTML")
