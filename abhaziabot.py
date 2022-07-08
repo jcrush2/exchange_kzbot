@@ -132,18 +132,18 @@ def donate(msg):
 def all_messages(msg):
 	TO_CHAT_ID= -1001378480179
 		
-	if msg.text == "🏖 Экскурсии":
+	if msg.text == "🏖\nЭкскурсии":
 		addnews(msg)
 		return
 	if msg.text == "ℹ️ О компании":
 		about(msg)
 		return
-	if msg.text == "🏠️ Жилье":
+	if msg.text == "🏠️\nЖилье":
 		addlove(msg)
 		return
 
 
-	if msg.text == "🚕 Трансфер":
+	if msg.text == "🚕\nТрансфер":
 		khvtrip(msg)
 		return
 	if msg.text == "☎️ Звонок":
