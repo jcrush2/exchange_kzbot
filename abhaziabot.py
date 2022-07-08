@@ -23,7 +23,7 @@ def start(msg):
 def main(msg):
 	keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 	khvtrip = telebot.types.KeyboardButton(text="🚕 Трансфер")
-	servise = telebot.types.KeyboardButton(text="ℹ️ Услуги")
+	servise = telebot.types.KeyboardButton(text="ℹ️ О компании")
 	newsadd = telebot.types.KeyboardButton(text="🏖 Экскурсии")
 	loveadd = telebot.types.KeyboardButton(text="🏠️ Жилье")
 	tel = telebot.types.KeyboardButton(text="☎️ Звонок")
@@ -57,6 +57,12 @@ def khvtrip(msg):
 	markup.add(button)
 	
 	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/33c8b53bf724ed16e8763.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
+	
+@bot.message_handler(commands=["about"])
+def about(msg):
+	chanel ="Компания МАО ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!"
+	
+	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/9e773eb447e1899938642.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
 
 	
 @bot.message_handler(commands=["tours"])
@@ -74,47 +80,18 @@ def tel(msg):
 @bot.message_handler(commands=["serv","help"])
 def serv(msg):
 	markup = telebot.types.InlineKeyboardMarkup()
-	button1 = telebot.types.InlineKeyboardButton(text="Водопады", callback_data="Погода") 
-	button2 = telebot.types.InlineKeyboardButton(text="Смотровые", callback_data="Кино")
-	button5 = telebot.types.InlineKeyboardButton(text="Чача", callback_data="Реклама")
-	button3 = telebot.types.InlineKeyboardButton(text="Вино", callback_data="Новости")
-	button4 = telebot.types.InlineKeyboardButton(text="Клубы", callback_data="Клубы") 
-	button6 = telebot.types.InlineKeyboardButton(text="Пляжи", callback_data="Фонтаны")
-	button7 = telebot.types.InlineKeyboardButton(text="Кони", callback_data="нг")
-	button8 = telebot.types.InlineKeyboardButton(text="Параплан", callback_data="Экстренные службы") 
+	button1 = telebot.types.InlineKeyboardButton(text="О компании", callback_data="О компании") 
+ 
 
 	markup.add(button3, button1,button5, button2, button4, button6,button7,button8)
 	bot.send_message(chat_id=msg.chat.id, text="В Абхазии:️", reply_markup=markup)
 @bot.callback_query_handler(func=lambda call: True)
 def longname(call):
 	a = datetime.datetime.today()
-	if call.data == "Погода":
+	if call.data == "О компании":
 		bot.send_message(call.message.chat.id, f"<a href='https://khabara.ru/weather.html?{a}'>🌡</a>", parse_mode="HTML")
 		
-	if call.data == "Новости":
-		bot.send_message(call.message.chat.id, f"<a href='https://khabara.ru/onlinetv.html?{a}'>📰</a>", parse_mode="HTML")
-		
-	if call.data == "Кино":
-		bot.send_message(call.message.chat.id, f"<a href='https://khabara.ru/cinema.html?{a}'>🎦</a>", parse_mode="HTML")
-	if call.data == "Клубы":
-		bot.send_message(call.message.chat.id, f"<a href='https://khabara.ru/cl.html?{a}'>💃</a>", parse_mode="HTML")
-	if call.data == "Фонтаны":
-		bot.send_message(call.message.chat.id, f"<a href='https://khabara.ru/fontan.html?{a}'>⛲️</a>", parse_mode="HTML")
-	if call.data == "нг":
-		sent = bot.send_message(call.message.chat.id, 'Генератор поздравлений с Новым Годом\n\nВведите Имя человека которого хотите поздравить ⬇')
-		bot.register_next_step_handler(sent, name_pozd)
-		
-	if call.data == "new":
-		sent =bot.send_message(call.message.chat.id, text="Пришлите свое фото и добавьте в подпись инфу о себе, контакты ⬇")
-		bot.register_next_step_handler(sent, love_foto)
 
-	if call.data == "Экстренные службы":
-		bot.send_message(call.message.chat.id, f"<a href='https://khabara.ru/tel.html?{a}'>⚠️</a>", parse_mode="HTML")
-
-	if call.data == "delete":
-		bot.send_message(call.message.chat.id, f"<a href='tg://user?id=55910350'>💰</a> Удалить анкету в знакомствах 30р. Счет для <b>{call.from_user.first_name}</b>:\n<a href='https://qiwi.com/payment/form/99999?amount=30&extra[%27accountType%27]=nickname&extra[%27account%27]=JCRUSH&extra[%27comment%27]=Love_Khv{call.from_user.id}&blocked[2]=comment&blocked[1]=account'>💳 Оплатить</a> (ID {call.from_user.id})", parse_mode="HTML")
-		
-		bot.send_message(-542531596, f"Удалить в знакомствах: {call.from_user.first_name} id: {call.from_user.id}")
 
 @bot.message_handler(commands=["stat"])
 def stat(msg):
@@ -158,12 +135,13 @@ def all_messages(msg):
 	if msg.text == "🏖 Экскурсии":
 		addnews(msg)
 		return
-	if msg.text == "ℹ️ Услуги":
-		serv(msg)
+	if msg.text == "ℹ️ О компании":
+		about(msg)
 		return
 	if msg.text == "🏠️ Жилье":
 		addlove(msg)
 		return
+
 
 	if msg.text == "🚕 Трансфер":
 		khvtrip(msg)
