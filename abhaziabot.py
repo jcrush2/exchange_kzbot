@@ -80,7 +80,6 @@ def addnews(msg):
 	
 def tel(msg):
 	bot.send_message(msg.chat.id, "Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇", parse_mode="HTML")
-	main(msg)
 
 
 @bot.message_handler(commands=["serv","help"])
