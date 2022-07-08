@@ -18,7 +18,7 @@ bot = telebot.TeleBot(TELEGRAM_API)
     
 @bot.message_handler(commands=["start"])
 def start(msg):
-	bot.send_message(msg.chat.id, "✅ Индивидуальные туры\n✅ Экскурсии\n✅ Трансфер\n✅ Проживание")
+	bot.send_message(msg.chat.id, "МАО-ТУР\n\n✅ Индивидуальные туры\n✅ Экскурсии\n✅ Трансфер\n✅ Проживание")
 	main(msg)
 	
 		
@@ -28,8 +28,8 @@ def main(msg):
 	khvtrip = telebot.types.KeyboardButton(text="🚕 Трансфер")
 	servise = telebot.types.KeyboardButton(text="ℹ️ Услуги")
 	newsadd = telebot.types.KeyboardButton(text="🏖 Экскурсии")
-
 	loveadd = telebot.types.KeyboardButton(text="🏠️ Жилье")
+	tel = telebot.types.KeyboardButton(text="☎️ Обратный звонок")
 	keyboard.add( newsadd, loveadd, khvtrip, servise)
 	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
 	
@@ -68,6 +68,8 @@ def addnews(msg):
 	button = telebot.types.InlineKeyboardButton(text="Заказать", url="https://vk.com/market-67677674?section=album_11") 
 	markup.add(button)
 	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
+def tel(msg):
+	bot.send_message(msg.chat.id, "Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇", parse_mode="HTML")
 
 
 @bot.message_handler(commands=["serv","help"])
@@ -166,6 +168,9 @@ def all_messages(msg):
 
 	if msg.text == "🚕 Трансфер":
 		khvtrip(msg)
+		return
+	if msg.text == "☎️ Обратный звонок":
+		tel(msg)
 		return
 		
 
