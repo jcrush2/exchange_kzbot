@@ -3,9 +3,6 @@ import datetime
 import hashlib
 import string
 import os
-
-
-
 from flask import Flask, request
 import peewee as pw
 import telebot
@@ -18,7 +15,7 @@ bot = telebot.TeleBot(TELEGRAM_API)
     
 @bot.message_handler(commands=["start"])
 def start(msg):
-	bot.send_message(msg.chat.id, "МАО-ТУР\n\n✅ Индивидуальные туры\n✅ Экскурсии\n✅ Трансфер\n✅ Проживание")
+	bot.send_message(msg.chat.id, "МАО-ТУР\n\n✅ Индивидуальные туры\n✅ Экскурсии\n✅ Трансфер\n✅ Проживание", reply_markup="HTML")
 	main(msg)
 	
 		
@@ -49,7 +46,7 @@ def addlove(msg):
 	markup = telebot.types.InlineKeyboardMarkup()
 	button = telebot.types.InlineKeyboardButton(text="Каталог апартаментов", url="https://vk.com/market-67677674?section=album_10") 
 	markup.add(button)
-	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
+	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup="HTML")
 	
 
 @bot.message_handler(commands=["taxi"])
@@ -58,16 +55,16 @@ def khvtrip(msg):
 	markup = telebot.types.InlineKeyboardMarkup()
 	button = telebot.types.InlineKeyboardButton(text="Заказать трансфер", url="https://vk.com/mao_tour?w=product-67677674_7618425") 
 	markup.add(button)
-	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
+	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup="HTML")
 
 	
 @bot.message_handler(commands=["tours"])
 def addnews(msg):
-	chanel ="<b>Туры и экскурсии</b>\n\n• Скальный монастырь Отхара + Форелевое хозяйство\n\n• Горячие источники + Парк Львов\n\n• Конные прогулки к водопадам\n\n• Джип тур - Гегский водопад +оз.Рица + Перевал Пыв\n\n• Джип тур на г. Мамзышха + 3 смотровые площадки\n\n• Тур на оз. Рица + оз. Малая Рица\n\n• Джип тур на Гегский водопад + оз. Рица\n\n• Тур по трём смотровым площадкам г.Гагра\n\n• Заброшенный город Акармара + 3 водопада + Горячий источник Кындык\n\n• Тур в Хашупсинский каньон + Белые скалы\n\n• Тур в Пицунду + Мюссерский заповедник\n\n• Тур на озеро "Рица"\n\n• Тур в Новый Афон\n\n• Тур в Черниговку + Кындык"
+	chanel ="<b>Туры и экскурсии</b>\n\n• Скальный монастырь Отхара + Форелевое хозяйство\n\n• Горячие источники + Парк Львов\n\n• Конные прогулки к водопадам\n\n• Джип тур - Гегский водопад +оз.Рица + Перевал Пыв\n\n• Джип тур на г. Мамзышха + 3 смотровые площадки\n\n• Тур на оз. Рица + оз. Малая Рица\n\n• Джип тур на Гегский водопад + оз. Рица\n\n• Тур по трём смотровым площадкам г.Гагра\n\n• Заброшенный город Акармара + 3 водопада + Горячий источник Кындык\n\n• Тур в Хашупсинский каньон + Белые скалы\n\n• Тур в Пицунду + Мюссерский заповедник\n\n• Тур на озеро Рица\n\n• Тур в Новый Афон\n\n• Тур в Черниговку + Кындык"
 	markup = telebot.types.InlineKeyboardMarkup()
 	button = telebot.types.InlineKeyboardButton(text="Заказать тур", url="https://vk.com/market-67677674?section=album_11") 
 	markup.add(button)
-	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
+	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup="HTML")
 	
 def tel(msg):
 	bot.send_message(msg.chat.id, "Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇", parse_mode="HTML")
