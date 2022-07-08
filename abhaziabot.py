@@ -16,6 +16,7 @@ bot = telebot.TeleBot(TELEGRAM_API)
 @bot.message_handler(commands=["start"])
 def start(msg):
 	bot.send_message(msg.chat.id, "<b>МАО-ТУР</b>\n\n✅ Индивидуальные туры\n✅ Экскурсии\n✅ Трансфер\n✅ Проживание\n\nКомпания МАО ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!",parse_mode="HTML")
+	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
 	main(msg)
 	
 		
@@ -28,7 +29,7 @@ def main(msg):
 	loveadd = telebot.types.KeyboardButton(text="🏠️\nЖилье")
 	tel = telebot.types.KeyboardButton(text="☎️ Звонок")
 	keyboard.add( newsadd, loveadd, khvtrip, servise,tel)
-	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
+	
 	
 	selected_user = Users.select().where(
 		Users.userid == msg.from_user.id)
@@ -47,6 +48,7 @@ def addlove(msg):
 	button = telebot.types.InlineKeyboardButton(text="Каталог апартаментов", url="https://vk.com/market-67677674?section=album_10") 
 	markup.add(button)
 	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/1fbe01e96aea7ef0aeb7e.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
+	main(msg)
 	
 
 @bot.message_handler(commands=["taxi"])
@@ -57,12 +59,14 @@ def khvtrip(msg):
 	markup.add(button)
 	
 	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/33c8b53bf724ed16e8763.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
+	main(msg)
 	
 @bot.message_handler(commands=["about"])
 def about(msg):
 	chanel ="Компания МАО ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!"
 	
 	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/9e773eb447e1899938642.png",caption=f"{chanel}️", parse_mode="HTML")
+	main(msg)
 
 	
 @bot.message_handler(commands=["tours"])
@@ -72,9 +76,11 @@ def addnews(msg):
 	button = telebot.types.InlineKeyboardButton(text="Заказать тур", url="https://vk.com/market-67677674?section=album_11") 
 	markup.add(button)
 	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/1a3b65f2fd070569f5760.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
+	main(msg)
 	
 def tel(msg):
 	bot.send_message(msg.chat.id, "Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇", parse_mode="HTML")
+	main(msg)
 
 
 @bot.message_handler(commands=["serv","help"])
