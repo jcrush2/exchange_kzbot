@@ -143,13 +143,13 @@ def send(msg):
 @bot.message_handler(commands=["trip"])
 def donate(msg):
 	markup = telebot.types.InlineKeyboardMarkup()
-	button = telebot.types.InlineKeyboardButton(text='Заказать', url="https://t.me/abhaziabot")
+	button = telebot.types.InlineKeyboardButton(text='🏖 Заказать', url="https://t.me/abhaziabot")
 	markup.add(button)
 	
 	bot.edit_message_text(
 	chat_id=-1001787255599,
 	message_id=6,
-	text="ℹ️ Туры, экскурсии....", parse_mode="HTML", reply_markup=markup)
+	text="ℹ️ Компания МАО ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!\n\nЭкскурсии, Жилье, Трансфер...", parse_mode="HTML", reply_markup=markup)
     
 @bot.message_handler(content_types=['text', 'document', 'photo', 'audio', 'video','voice'])
 def all_messages(msg):
