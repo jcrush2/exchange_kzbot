@@ -45,34 +45,31 @@ def insert_user(user):
 				userid=user.id)
 	new_user.save()
 
-@bot.message_handler(commands=["love"])
+@bot.message_handler(commands=["dom"])
 def addlove(msg):
-	chanel ="Для публикации в знакомствах @love_khv необходимо:\
-\n\n• прислать Фото\
-\n• инфу О себе и контакты\
-\n• пишите одним предложением️"
+	chanel ="Аренда жилья️"
 	markup = telebot.types.InlineKeyboardMarkup()
-	button0 = telebot.types.InlineKeyboardButton(text="💌 Прислать анкету", callback_data="new")
-	button = telebot.types.InlineKeyboardButton(text="❌ Удалить", callback_data="delete") 
-	markup.add(button0,button)
-	
+	button = telebot.types.InlineKeyboardButton(text="Каталог апартаментов", url="https://vk.com/market-67677674?section=album_10") 
+	markup.add(button)
 	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
 	
 
 	
 def khvtrip(msg):
 	chanel ="Стоимость трансфера - от 1000р."
-	bot.send_message(msg.chat.id, f"{chanel}", parse_mode="HTML")
+	button = telebot.types.InlineKeyboardButton(text="Заказать", url="https://vk.com/mao_tour?w=product-67677674_7618425") 
+	markup.add(button)
+	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
 	main(msg)
 	
 @bot.message_handler(commands=["news"])
 def addnews(msg):
-	chanel ="Для публикации в Новостях @khv_news необходимо:\
-\n\n• рассказать в подробностях что и где произошло одним-двумя предложениями\
-\n• желательно фото или видео\
-\n• реклама на платной основе️"
-	bot.send_message(msg.chat.id, f"{chanel}", parse_mode="HTML")
+	chanel ="Туры и экскурсии"
+	button = telebot.types.InlineKeyboardButton(text="Заказать", url="https://vk.com/market-67677674?section=album_11") 
+	markup.add(button)
+	sent =bot.send_message(chat_id=msg.chat.id, text=f"{chanel}️", reply_markup=markup)
 	main(msg)
+	
 
 @bot.message_handler(commands=["chats","bots","channels"])
 def chats(msg):
@@ -181,18 +178,16 @@ def donate(msg):
 def all_messages(msg):
 	TO_CHAT_ID= -1001378480179
 		
-	if msg.text == "Прислaть новость":
+	if msg.text == "🏖 Экскурсии":
 		addnews(msg)
 		return
 	if msg.text == "ℹ️ Услуги":
 		serv(msg)
 		return
-	if msg.text == "❤️ Знакомства" or msg.text == "❤️ Любовь":
+	if msg.text == "🏠️ Жилье":
 		addlove(msg)
 		return
-	if msg.text == "📂️ Группы":
-		chats(msg)
-		return
+
 	if msg.text == "🚕 Трансфер":
 		khvtrip(msg)
 		return
