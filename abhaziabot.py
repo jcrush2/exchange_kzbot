@@ -176,13 +176,13 @@ def all_messages(msg):
 	if msg.chat.id == TO_CHAT_ID:
 
 			bot.copy_message(message_id=msg.message_id,chat_id=msg.reply_to_message.forward_from.id,from_chat_id=msg.chat.id)
-			bot.send_message(TO_CHAT_ID, "отправлено")
+			bot.send_message(TO_CHAT_ID, "Сообщение клиенту отправлено!")
 	else:
 		
 		bot.forward_message(TO_CHAT_ID, msg.chat.id, msg.message_id)
 		bot.send_message(TO_CHAT_ID, f"От: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
 		
-		bot.send_message(msg.chat.id, f"{msg.from_user.first_name} ваше сообщение получено.")
+		bot.send_message(msg.chat.id, f"МАО-ТУР: {msg.from_user.first_name} ваше сообщение получено.")
 		main(msg)
 		
 
