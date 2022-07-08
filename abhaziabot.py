@@ -56,7 +56,8 @@ def khvtrip(msg):
 	button = telebot.types.InlineKeyboardButton(text="Заказать трансфер", url="https://vk.com/mao_tour?w=product-67677674_7618425") 
 	markup.add(button)
 	
-	bot.send_photo(msg.chat.id, f"https://sun1.57354.userapi.com/impg/XpbtcLnjQDi8pxve6VfZa02gSC8gXfO7xnCFGg/o9euaZtgBvc.jpg", caption = f"{chanel}️", parse_mode="HTML", reply_markup=markup)
+
+	sent =bot.send_photo(msg.chat.id, "https://sun1.57354.userapi.com/impg/XpbtcLnjQDi8pxve6VfZa02gSC8gXfO7xnCFGg/o9euaZtgBvc.jpg",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
 
 	
 @bot.message_handler(commands=["tours"])
