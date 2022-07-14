@@ -175,7 +175,7 @@ def rules(msg):
 
 
 	markup = telebot.types.InlineKeyboardMarkup()
-	button = telebot.types.InlineKeyboardButton(text='Контакты', url=f"https://t.me/KhvChat/13")
+	button = telebot.types.InlineKeyboardButton(text='Контакты', url=f"https://t.me/j_crush/13")
 	markup.add(button)
 
 
