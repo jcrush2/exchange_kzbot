@@ -170,8 +170,8 @@ def all_messages(msg):
 		
 
 		
-@bot.message_handler(commands=["blog"], func=is_my_message)
-def rules(msg):
+@bot.message_handler(commands=["blog"])
+def blog(msg):
 
 
 	markup = telebot.types.InlineKeyboardMarkup()
