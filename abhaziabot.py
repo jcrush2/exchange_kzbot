@@ -132,6 +132,23 @@ def donate(msg):
 	chat_id=-1001787255599,
 	message_id=6,
 	text="ℹ️ Компания МАО ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!\n\nЭкскурсии, Жилье, Трансфер...", parse_mode="HTML", reply_markup=markup)
+	return
+
+@bot.message_handler(commands=["blog"])
+def blog(msg):
+
+
+	markup = telebot.types.InlineKeyboardMarkup()
+	button = telebot.types.InlineKeyboardButton(text='Контакты', url=f"https://t.me/j_crush/13")
+	markup.add(button)
+
+
+	bot.edit_message_text(
+	chat_id=-1001080261871,
+	message_id=13,
+	text="ℹ️ <b>Travel, Sport, Moneymaking</b>\
+\n\nTelegram: @jcrush", parse_mode="HTML", reply_markup=markup)
+	return
     
 @bot.message_handler(content_types=['text', 'document', 'photo', 'audio', 'video','voice'])
 def all_messages(msg):
@@ -170,20 +187,6 @@ def all_messages(msg):
 		
 
 		
-@bot.message_handler(commands=["blog"])
-def blog(msg):
-
-
-	markup = telebot.types.InlineKeyboardMarkup()
-	button = telebot.types.InlineKeyboardButton(text='Контакты', url=f"https://t.me/j_crush/13")
-	markup.add(button)
-
-
-	bot.edit_message_text(
-	chat_id=-1001080261871,
-	message_id=13,
-	text="ℹ️ <b>Travel, Sport, Moneymaking</b>\
-\n\nTelegram: @jcrush", parse_mode="HTML", reply_markup=markup)
 
 # bot.polling(none_stop=True)
 
