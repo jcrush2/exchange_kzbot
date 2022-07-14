@@ -170,8 +170,20 @@ def all_messages(msg):
 		
 
 		
-	
+@bot.message_handler(commands=["blog"], func=is_my_message)
+def rules(msg):
 
+
+	markup = telebot.types.InlineKeyboardMarkup()
+	button = telebot.types.InlineKeyboardButton(text='Контакты', url=f"https://t.me/KhvChat/13")
+	markup.add(button)
+
+
+	bot.edit_message_text(
+	chat_id=-1001080261871,
+	message_id=13,
+	text="ℹ️ <b>Travel, Sport, Moneymaking</b>\
+\n\nTelegram: @jcrush", parse_mode="HTML", reply_markup=markup)
 
 # bot.polling(none_stop=True)
 
