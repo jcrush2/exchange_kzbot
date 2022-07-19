@@ -125,7 +125,7 @@ def send(msg):
 @bot.message_handler(commands=["trip"])
 def donate(msg):
 	markup = telebot.types.InlineKeyboardMarkup()
-	button = telebot.types.InlineKeyboardButton(text='🏖 Отправить заявку', url="https://t.me/abhaziabot")
+	button = telebot.types.InlineKeyboardButton(text='🏖 Заказать', url="https://t.me/abhaziabot")
 	markup.add(button)
 	
 	bot.edit_message_caption(
