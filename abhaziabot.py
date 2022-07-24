@@ -23,8 +23,8 @@ def start(msg):
 @bot.message_handler(commands=["main"])
 def main(msg):
 	keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-	khvtrip = telebot.types.KeyboardButton(text="🚕\nТрансфер")
-	servise = telebot.types.KeyboardButton(text="ℹ️ МАО ТУР")
+	khvtrip = telebot.types.KeyboardButton(text="🚕 трансфер")
+	servise = telebot.types.KeyboardButton(text="ℹ️ Мао-Тур")
 	newsadd = telebot.types.KeyboardButton(text="🏖\nЭкскурсии")
 	newsadd2 = telebot.types.KeyboardButton(text="🔥\nЭксклюзив")
 	loveadd = telebot.types.KeyboardButton(text="🏠️\nЖилье")
@@ -175,7 +175,7 @@ def all_messages(msg):
 		addnews2(msg)
 		return
 		
-	if msg.text == "ℹ️ МАО ТУР":
+	if msg.text == "ℹ️ Мао-Тур":
 		about(msg)
 		return
 	if msg.text == "🏠️\nЖилье":
@@ -183,7 +183,7 @@ def all_messages(msg):
 		return
 
 
-	if msg.text == "🚕\nТрансфер":
+	if msg.text == "🚕 Трансфер":
 		khvtrip(msg)
 		return
 	if msg.text == "☎️ Звонок":
