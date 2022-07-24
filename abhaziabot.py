@@ -56,7 +56,7 @@ def addlove(msg):
 def khvtrip(msg):
 	chanel ="Встретим и привезем. Стоимость трансфера - от 1000р."
 	markup = telebot.types.InlineKeyboardMarkup()
-	button = telebot.types.InlineKeyboardButton(text="Заказать трансфер", url="https://vk.com/mao_tour?w=product-67677674_7618425") 
+	button = telebot.types.InlineKeyboardButton(text="Заказать трансфер", callback_data="taxi") 
 	markup.add(button)
 	
 	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/33c8b53bf724ed16e8763.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
@@ -64,7 +64,7 @@ def khvtrip(msg):
 	
 @bot.message_handler(commands=["about"])
 def about(msg):
-	chanel ="Компания МАО ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!"
+	chanel ="Компания МАО-ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!\n\n<b>Контакты:</b>\n+7 (940) 713-16-57\nTelegram: @mao_tour\nInsta: instagram.com/mao_tour\nВК: vk.com/mao_tour\nОК: ok.ru/maotour"
 	
 	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/42450df7fb04d4b819958.jpg",caption=f"{chanel}️", parse_mode="HTML")
 	main(msg)
@@ -106,8 +106,13 @@ def longname(call):
 	a = datetime.datetime.today()
 	if call.data == "tours2":
 		bot.send_message(call.message.chat.id, f"Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇️", parse_mode="HTML")
+		return
 	if call.data == "tours":
 		bot.send_message(call.message.chat.id, f"Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇️", parse_mode="HTML")
+		return
+	if call.data == "taxi":
+		bot.send_message(call.message.chat.id, f"Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇️", parse_mode="HTML")
+		return
 		
 
 
