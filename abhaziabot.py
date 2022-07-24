@@ -79,7 +79,7 @@ def addnews(msg):
 	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/1a3b65f2fd070569f5760.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
 	main(msg)
 	
-@bot.message_handler(commands=["tours2"])
+@bot.message_handler(commands=["vip"])
 def addnews2(msg):
 	chanel ="<b>Уникальный отдых</b>\n\n• Полёт на параплане в Абхазии\n\n• Алко-Пати на лимузине"
 	markup = telebot.types.InlineKeyboardMarkup()
