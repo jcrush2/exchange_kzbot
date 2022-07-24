@@ -24,11 +24,12 @@ def start(msg):
 def main(msg):
 	keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 	khvtrip = telebot.types.KeyboardButton(text="🚕\nТрансфер")
-	servise = telebot.types.KeyboardButton(text="ℹ️ О компании")
+	servise = telebot.types.KeyboardButton(text="ℹ️ МАО ТУР")
 	newsadd = telebot.types.KeyboardButton(text="🏖\nЭкскурсии")
+	newsadd2 = telebot.types.KeyboardButton(text="🔥\nЭксклюзив")
 	loveadd = telebot.types.KeyboardButton(text="🏠️\nЖилье")
 	tel = telebot.types.KeyboardButton(text="☎️ Звонок")
-	keyboard.add( newsadd, loveadd, khvtrip, servise,tel)
+	keyboard.add( newsadd, newsadd2, loveadd, khvtrip, servise,tel)
 	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
 	
 	selected_user = Users.select().where(
@@ -65,17 +66,26 @@ def khvtrip(msg):
 def about(msg):
 	chanel ="Компания МАО ТУР - ориентирована на максимально активный отдых. С большим опытом и заботой для Вас, организовывает экскурсии и индивидуальные туры по Абхазии!"
 	
-	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/9e773eb447e1899938642.png",caption=f"{chanel}️", parse_mode="HTML")
+	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/42450df7fb04d4b819958.jpg",caption=f"{chanel}️", parse_mode="HTML")
 	main(msg)
 
 	
 @bot.message_handler(commands=["tours"])
 def addnews(msg):
-	chanel ="<b>Туры и экскурсии</b>\n\n• Скальный монастырь Отхара + Форелевое хозяйство\n\n• Горячие источники + Парк Львов\n\n• Конные прогулки к водопадам\n\n• Джип тур - Гегский водопад +оз.Рица + Перевал Пыв\n\n• Джип тур на г. Мамзышха + 3 смотровые площадки\n\n• Тур на оз. Рица + оз. Малая Рица\n\n• Джип тур на Гегский водопад + оз. Рица\n\n• Тур по трём смотровым площадкам г.Гагра\n\n• Заброшенный город Акармара + 3 водопада + Горячий источник Кындык\n\n• Тур в Хашупсинский каньон + Белые скалы\n\n• Тур в Пицунду + Мюссерский заповедник\n\n• Тур на озеро Рица\n\n• Тур в Новый Афон\n\n• Тур в Черниговку + Кындык"
+	chanel ="<b>Туры и экскурсии</b>\n\n• Заброшенный город Акармара + 3 водопада + Горячий источник Кындыг\n\n• Джип тур на Гегский водопад + оз. Рица\n\n• Конные прогулки к водопадам\n\n• Тур на озеро Рица\n\n• Джип тур - Гегский водопад +оз.Рица+ Перевал Пыв\n\n• Пляж с белыми скалами + смотровая на закате + Хурмовая роща\n\n• Джип тур на г. Мамзышха + 3 смотровые площадки\n\n• Парк Львов+скальный монастырь Отхара + форелевая ферма\n\n• Тур на оз. Рица + оз. Малая Рица\n\n• Тур по трём смотровым площадкам г.Гагра\n\n• Тур в Хашупсинский каньон + Белые скалы\n\n• Тур в Новый Афон\n\n• Тур в Пицунду + Мюссерский заповедник\n\n• Тур в Черниговку + Кындыг"
 	markup = telebot.types.InlineKeyboardMarkup()
-	button = telebot.types.InlineKeyboardButton(text="Заказать тур", url="https://vk.com/market-67677674?section=album_11") 
+	button = telebot.types.InlineKeyboardButton(text="Заказать тур", callback_data="tours") 
 	markup.add(button)
 	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/1a3b65f2fd070569f5760.png",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
+	main(msg)
+	
+@bot.message_handler(commands=["tours2"])
+def addnews2(msg):
+	chanel ="<b>Уникальный отдых</b>\n\n• Полёт на параплане в Абхазии\n\n• Алко-Пати на лимузине"
+	markup = telebot.types.InlineKeyboardMarkup()
+	button = telebot.types.InlineKeyboardButton(text="Заказать тур", callback_data="tours2") 
+	markup.add(button)
+	bot.send_photo(msg.chat.id, f"https://telegra.ph/file/1ed90785675dfb4eedfe8.jpg",caption=f"{chanel}️", parse_mode="HTML",reply_markup=markup)
 	main(msg)
 	
 def tel(msg):
@@ -90,11 +100,14 @@ def serv(msg):
 
 	markup.add(button3, button1,button5, button2, button4, button6,button7,button8)
 	bot.send_message(chat_id=msg.chat.id, text="В Абхазии:️", reply_markup=markup)
+	
 @bot.callback_query_handler(func=lambda call: True)
 def longname(call):
 	a = datetime.datetime.today()
-	if call.data == "О компании":
-		bot.send_message(call.message.chat.id, f"<a href='https://khabara.ru/weather.html?{a}'>🌡</a>", parse_mode="HTML")
+	if call.data == "tours2":
+		bot.send_message(call.message.chat.id, f"Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇️", parse_mode="HTML")
+	if call.data == "tours":
+		bot.send_message(call.message.chat.id, f"Оставьте номер телефона. Оператор свяжется с вами в ближайшее время ⬇️", parse_mode="HTML")
 		
 
 
@@ -157,7 +170,12 @@ def all_messages(msg):
 	if msg.text == "🏖\nЭкскурсии":
 		addnews(msg)
 		return
-	if msg.text == "ℹ️ О компании":
+		
+	if msg.text == "🔥\nЭксклюзив":
+		addnews2(msg)
+		return
+		
+	if msg.text == "ℹ️ МАО ТУР":
 		about(msg)
 		return
 	if msg.text == "🏠️\nЖилье":
