@@ -23,13 +23,13 @@ def start(msg):
 @bot.message_handler(commands=["main"])
 def main(msg):
 	keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-	khvtrip = telebot.types.KeyboardButton(text="🚕 трансфер")
+	khvtrip = telebot.types.KeyboardButton(text="🚕\nТрансфер")
 	servise = telebot.types.KeyboardButton(text="ℹ️ Мао-Тур")
 	newsadd = telebot.types.KeyboardButton(text="🏖\nЭкскурсии")
 	newsadd2 = telebot.types.KeyboardButton(text="🔥\nЭксклюзив")
-	loveadd = telebot.types.KeyboardButton(text="🏠️\nЖилье")
+	loveadd = telebot.types.KeyboardButton(text="🏠️ Жилье")
 	tel = telebot.types.KeyboardButton(text="☎️ Звонок")
-	keyboard.add( newsadd, newsadd2, loveadd, khvtrip, servise,tel)
+	keyboard.add( newsadd, newsadd2, khvtrip, loveadd, servise,tel)
 	bot.send_message(msg.chat.id, "Задать вопрос ⬇️", reply_markup=keyboard)
 	
 	selected_user = Users.select().where(
@@ -178,12 +178,12 @@ def all_messages(msg):
 	if msg.text == "ℹ️ Мао-Тур":
 		about(msg)
 		return
-	if msg.text == "🏠️\nЖилье":
+	if msg.text == "🏠️ Жилье":
 		addlove(msg)
 		return
 
 
-	if msg.text == "🚕 Трансфер":
+	if msg.text == "🚕\nТрансфер":
 		khvtrip(msg)
 		return
 	if msg.text == "☎️ Звонок":
