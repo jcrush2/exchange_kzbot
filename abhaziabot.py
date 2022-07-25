@@ -101,6 +101,7 @@ def serv(msg):
 	markup.add(button3, button1,button5, button2, button4, button6,button7,button8)
 	bot.send_message(chat_id=msg.chat.id, text="В Абхазии:️", reply_markup=markup)
 	
+	
 @bot.callback_query_handler(func=lambda call: True)
 def longname(call):
 	a = datetime.datetime.today()
@@ -197,6 +198,21 @@ def all_messages(msg):
 		
 
 	if msg.chat.id == TO_CHAT_ID:
+			if '/pay'in msg.text:
+				
+				if len(msg.text.split()) == 1:
+					return
+				else:
+					n = int(msg.text.split()[1])
+					n = abs(n)
+
+	
+					bot.send_message(TO_CHAT_ID, f"💰 Счет {n} рублей.\n<a href='https://qiwi.com/payment/form/99999?amount={x}&extra[%27accountType%27]=nickname&extra[%27account%27]=JCRUSH&extra[%27comment%27]=MaoTur&blocked[2]=comment&blocked[1]=account'>💳 Оплатить</a>.", parse_mode="HTML")
+	
+					bot.copy_message(message_id=msg.message_id+1,chat_id=msg.reply_to_message.	forward_from.id,from_chat_id=msg.chat.id)
+					bot.send_message(TO_CHAT_ID, "Счет выставлен клиенту!")
+					return
+			
 
 			bot.copy_message(message_id=msg.message_id,chat_id=msg.reply_to_message.forward_from.id,from_chat_id=msg.chat.id)
 			bot.send_message(TO_CHAT_ID, "Сообщение клиенту отправлено!")
