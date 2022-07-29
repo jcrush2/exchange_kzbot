@@ -207,7 +207,7 @@ def all_messages(msg):
 					n = abs(n)
 
 	
-					bot.send_message(TO_CHAT_ID, f"Счет <b>{n}</b> рублей.\n<a href='https://qiwi.com/payment/form/99999?amount={n}&extra[%27accountType%27]=nickname&extra[%27account%27]=JCRUSH&extra[%27comment%27]=MaoTur&blocked[2]=comment&blocked[1]=account'>💳 Оплатить ⬅️</a>", parse_mode="HTML")
+					bot.send_message(TO_CHAT_ID, f"Счет <b>{n}</b> рублей.\n<a href='https://qiwi.com/payment/form/99999?amount={n}&extra[%27accountType%27]=nickname&extra[%27account%27]=MAOTUOR&extra[%27comment%27]=MaoTur&blocked[2]=comment&blocked[1]=account'>💳 Оплатить ⬅️</a>", parse_mode="HTML")
 	
 					bot.copy_message(message_id=msg.message_id+1,chat_id=msg.reply_to_message.	forward_from.id,from_chat_id=msg.chat.id)
 					bot.send_message(TO_CHAT_ID, "Счет выставлен клиенту!")
