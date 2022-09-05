@@ -162,7 +162,7 @@ def donate(msg):
 	bot.edit_message_caption(
 	chat_id=-1001460790619,
 	message_id=4,
-	caption="ℹБрусника свежая с доставкой в Хабаровске.\n\nБрусника и ягода в наличии.\n\nЦена 350р литр.\n\nДоставка от 5 л бесплатно\n\nтел. +79242104451️", parse_mode="HTML", reply_markup=markup)
+	caption="Брусника свежая с доставкой в Хабаровске.\n\nБрусника и ягода в наличии.\n\nЦена 350р литр.\n\nДоставка от 5 л бесплатно\n\nтел. +79242104451", parse_mode="HTML", reply_markup=markup)
 	return
 
 @bot.message_handler(commands=["blog"])
