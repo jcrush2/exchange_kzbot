@@ -50,7 +50,8 @@ def love_foto2(msg):
 
 	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
 	bot.send_message(-886511861, f"Сумма от: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
-	bot.send_message(msg.chat.id, f"️.", parse_mode="HTML")
+	bot.send_message(msg.chat.id, f"️Ваш заказ на обработке.", parse_mode="HTML")
+	return
 		
 
 def helps(msg):
