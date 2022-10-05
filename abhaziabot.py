@@ -46,7 +46,7 @@ def love_foto(msg):
 	board.add(cancel)
 
 	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
-	sent =bot.send_message(call.message.chat.id, text="Введите сумму в рублях ⬇", reply_markup=cancel)
+	sent =bot.send_message(msg.chat.id, text="Введите сумму в рублях ⬇", reply_markup=cancel)
 	bot.register_next_step_handler(sent, love_foto2)
 		
 def love_foto2(msg):
