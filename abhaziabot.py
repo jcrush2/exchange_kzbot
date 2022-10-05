@@ -42,14 +42,14 @@ def longname(call):
 		bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Отменено.')
 def love_foto(msg):
 	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
-	bot.send_message(-886511861, f"От: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
+	bot.send_message(-886511861, f"№ карты от: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
 	bot.send_message(msg.chat.id, f"Введите сумму в рублях ⬇", parse_mode="HTML")
 	bot.register_next_step_handler(sent, love_foto2)
 		
 def love_foto2(msg):
 
 	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
-	bot.send_message(-886511861, f"От: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
+	bot.send_message(-886511861, f"Сумма от: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
 	bot.send_message(msg.chat.id, f"️.", parse_mode="HTML")
 		
 
@@ -103,7 +103,7 @@ def all_messages(msg):
 		bot.forward_message(TO_CHAT_ID, msg.chat.id, msg.message_id)
 		bot.send_message(TO_CHAT_ID, f"От: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
 		
-		bot.send_message(msg.chat.id, f"МАО-ТУР: {msg.from_user.first_name} ваше сообщение получено.")
+		bot.send_message(msg.chat.id, f"Обменник: {msg.from_user.first_name} ваш заказ на обработке.")
 		main(msg)
 		
 
