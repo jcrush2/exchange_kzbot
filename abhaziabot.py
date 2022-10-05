@@ -51,13 +51,15 @@ def love_foto(msg):
 	if msg.text == "🇰🇿 Обмен RUB->KZ":
 		exchange(msg)
 		return
-
+	global name;
+	name = msg.text;
+	bot.send_message(msg.from_user.id, 'Введите сумму в рублях');
+	bot.register_next_step_handler(msg, love_foto2);
+	
 	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
 	bot.send_message(-886511861, f"№ карты от: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
 	
 
-	sent2 =bot.send_message(msg.chat.id, text=f"Введите сумму в рублях и переведите ее на № карты: <code>5536 9138 9247 9276</code>\n\nПосле перевода подтвердите, нажав кнопку ниже ⬇")
-	bot.register_next_step_handler(sent2, love_foto2)
 	
 def love_foto2(msg):
 	if msg.text == "ℹ️ Помощь":
@@ -66,12 +68,19 @@ def love_foto2(msg):
 	if msg.text == "🇰🇿 Обмен RUB->KZ":
 		exchange(msg)
 		return
+	global summakz;
+	summakz = msg.text;
+	
 	markup = telebot.types.InlineKeyboardMarkup()
 	button0 = telebot.types.InlineKeyboardButton(text="Оплатил!", callback_data="exchange2")
 	button1 = telebot.types.InlineKeyboardButton(text="Отменить", callback_data="cancel")
 	markup.add(button0,button1)
 	
 	bot.send_message(msg.chat.id, f"После перевода подтвердите, нажав кнопку ниже ⬇", parse_mode="HTML", reply_markup=markup)
+	
+
+	bot.send_message(msg.chat.id, 'Тебе '+(summakz)+' лет, тебя зовут '+name+' ffdf')
+
 
 		
 		
