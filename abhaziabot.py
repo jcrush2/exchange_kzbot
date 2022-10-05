@@ -55,11 +55,12 @@ def love_foto(msg):
 	if msg.text.isdigit()!=True:
 		bot.send_message(msg.from_user.id, 'Введите номер карты');
 		bot.register_next_step_handler(msg, love_foto)
+		return
 	global name;
 	name = msg.text;
 	bot.send_message(msg.from_user.id, 'Введите сумму в рублях');
 	bot.register_next_step_handler(msg, love_foto2);
-	
+	return
 	
 
 	
@@ -73,6 +74,7 @@ def love_foto2(msg):
 	if msg.text.isdigit()!=True:
 		bot.send_message(msg.from_user.id, 'Введите сумму в рублях');
 		bot.register_next_step_handler(msg, love_foto2)
+		return
 	global summakz;
 	summakz = msg.text;
 	
@@ -82,7 +84,7 @@ def love_foto2(msg):
 	markup.add(button0,button1)
 	
 	bot.send_message(msg.chat.id, f"После перевода подтвердите, нажав кнопку ниже ⬇", parse_mode="HTML", reply_markup=markup)
-	
+	return
 
 
 
