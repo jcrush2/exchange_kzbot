@@ -56,7 +56,7 @@ def love_foto(msg):
 	bot.send_message(-886511861, f"№ карты от: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
 	
 
-	sent2 =bot.send_message(call.message.chat.id, text=f"Введите сумму в рублях и переведите ее на № карты: <code>5536 9138 9247 9276</code>\n\nПосле перевода подтвердите, нажав кнопку ниже ⬇")
+	sent2 =bot.send_message(msg.chat.id, text=f"Введите сумму в рублях и переведите ее на № карты: <code>5536 9138 9247 9276</code>\n\nПосле перевода подтвердите, нажав кнопку ниже ⬇")
 	bot.register_next_step_handler(sent2, love_foto2)
 	
 def love_foto2(msg):
