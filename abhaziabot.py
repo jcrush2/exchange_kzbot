@@ -35,16 +35,22 @@ def longname(call):
 	a = datetime.datetime.today()
 
 	if call.data == "exchange":
-		sent =bot.send_message(call.message.chat.id, text="Введите номер карты Каспи банка и сумму в рублях ⬇")
+		sent =bot.send_message(call.message.chat.id, text="Введите номер карты Каспи банка ⬇")
 		bot.register_next_step_handler(sent, love_foto)
 		return
 	if call.data == "Отмена":
 		bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Отменено.')
-		
 def love_foto(msg):
+	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
+	bot.send_message(-886511861, f"От: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
+	bot.send_message(msg.chat.id, f"Введите сумму в рублях ⬇", parse_mode="HTML")
+	bot.register_next_step_handler(sent, love_foto2)
+		
+def love_foto2(msg):
 
 	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
 	bot.send_message(-886511861, f"От: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
+	bot.send_message(msg.chat.id, f"️.", parse_mode="HTML")
 		
 
 def helps(msg):
