@@ -43,6 +43,7 @@ def longname(call):
 	if call.data == "exchange2":
 		
 		bot.send_message(-886511861, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> id: {call.from_user.id}", parse_mode="HTML")
+		bot.send_message(call.chat.id, f"Обменник: {call.from_user.first_name} ваш заказ на обработке.")
 def love_foto(msg):
 	if msg.text == "ℹ️ Помощь":
 		helps(msg)
@@ -63,6 +64,8 @@ def love_foto(msg):
 	markup.add(button0,button1)
 	
 	bot.send_message(msg.chat.id, f"Введите сумму в рублях и переведите ее на № карты: <code>5536 9138 9247 9276</code>\n\nПосле перевода подтвердите, нажав кнопку ниже", parse_mode="HTML", reply_markup=markup)
+	
+	return
 
 		
 		
@@ -118,7 +121,7 @@ def all_messages(msg):
 		bot.send_message(TO_CHAT_ID, f"От: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
 		
 		bot.send_message(msg.chat.id, f"Обменник: {msg.from_user.first_name} ваш заказ на обработке.")
-		main(msg)
+
 		
 
 		
