@@ -60,6 +60,12 @@ def love_foto(msg):
 	bot.register_next_step_handler(sent2, love_foto2)
 	
 def love_foto2(msg):
+	if msg.text == "ℹ️ Помощь":
+		helps(msg)
+		return
+	if msg.text == "🇰🇿 Обмен RUB->KZ":
+		exchange(msg)
+		return
 	markup = telebot.types.InlineKeyboardMarkup()
 	button0 = telebot.types.InlineKeyboardButton(text="Оплатил!", callback_data="exchange2")
 	button1 = telebot.types.InlineKeyboardButton(text="Отменить", callback_data="cancel")
