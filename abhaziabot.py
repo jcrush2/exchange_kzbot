@@ -42,8 +42,9 @@ def longname(call):
 		bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Отменено.')
 	if call.data == "exchange2":
 		
-		bot.send_message(-886511861, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> id: {call.from_user.id}", parse_mode="HTML")
+		bot.send_message(-878312423, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> № карты: {name} Сумма: {summakz} id: {call.from_user.id}", parse_mode="HTML")
 		bot.send_message(call.chat.id, f"Обменник: {call.from_user.first_name} ваш заказ на обработке.")
+
 def love_foto(msg):
 	if msg.text == "ℹ️ Помощь":
 		helps(msg)
@@ -56,8 +57,6 @@ def love_foto(msg):
 	bot.send_message(msg.from_user.id, 'Введите сумму в рублях');
 	bot.register_next_step_handler(msg, love_foto2);
 	
-	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
-	bot.send_message(-886511861, f"№ карты от: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
 	
 
 	
@@ -79,7 +78,7 @@ def love_foto2(msg):
 	bot.send_message(msg.chat.id, f"После перевода подтвердите, нажав кнопку ниже ⬇", parse_mode="HTML", reply_markup=markup)
 	
 
-	bot.send_message(msg.chat.id, 'Тебе '+(summakz)+' лет, тебя зовут '+name+' ffdf')
+
 
 
 		
@@ -100,7 +99,7 @@ def exchange(msg):
 	    
 @bot.message_handler(content_types=['text', 'document', 'photo', 'audio', 'video','voice'])
 def all_messages(msg):
-	TO_CHAT_ID= -886511861
+	TO_CHAT_ID= -878312423
 		
 	if msg.text == "ℹ️ Помощь":
 		helps(msg)
