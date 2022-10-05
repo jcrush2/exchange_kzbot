@@ -51,10 +51,7 @@ def love_foto(msg):
 	if msg.text == "🇰🇿 Обмен RUB->KZ":
 		exchange(msg)
 		return
-	if msg.isdigit()!=True:
-		sent = bot.send_message(msg.chat.id, text="⚠️ Ошибка! Только цифры" , parse_mode="HTML")
-		bot.register_next_step_handler(sent, love_foto)
-		return
+
 	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
 	bot.send_message(-886511861, f"№ карты от: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
 	
