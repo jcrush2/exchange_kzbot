@@ -42,13 +42,17 @@ def longname(call):
 		bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Отменено.')
 	if call.data == "exchange2":
 		
-		bot.send_message(-886511861, f"Оплатил: <a href='tg://user?id={call.message.from_user.id}'>{call.message.from_user.first_name}</a> id: {call.message.from_user.id}", parse_mode="HTML")
+		bot.send_message(-886511861, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> id: {call.from_user.id}", parse_mode="HTML")
 def love_foto(msg):
 	if msg.text == "ℹ️ Помощь":
 		helps(msg)
 		return
 	if msg.text == "🇰🇿 Обмен RUB->KZ":
 		exchange(msg)
+		return
+	if msg.isdigit()!=True:
+		sent = bot.send_message(msg.chat.id, text="⚠️ Ошибка! Только цифры" , parse_mode="HTML")
+		bot.register_next_step_handler(sent, love_foto)
 		return
 	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
 	bot.send_message(-886511861, f"№ карты от: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
@@ -58,7 +62,7 @@ def love_foto(msg):
 	button1 = telebot.types.InlineKeyboardButton(text="Отменить", callback_data="cancel")
 	markup.add(button0,button1)
 	
-	bot.send_message(msg.chat.id, f"Введите сумму в рублях и переведите ее на № карты: 5536 9138 9247 9276\n\nПосле перевода подтвердите, нажав кнопку ниже", parse_mode="HTML", reply_markup=markup)
+	bot.send_message(msg.chat.id, f"Введите сумму в рублях и переведите ее на № карты: <code>5536 9138 9247 9276</code>\n\nПосле перевода подтвердите, нажав кнопку ниже", parse_mode="HTML", reply_markup=markup)
 
 		
 		
