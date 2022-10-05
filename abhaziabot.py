@@ -43,7 +43,7 @@ def longname(call):
 	if call.data == "exchange2":
 		
 		bot.send_message(-878312423, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> № карты: {name} Сумма: {summakz} id: {call.from_user.id}", parse_mode="HTML")
-		bot.send_message(call.chat.id, f"Обменник: {call.from_user.first_name} ваш заказ на обработке.")
+		bot.send_message(call.message.chat.id, f"Обменник: {call.from_user.first_name} ваш заказ на обработке.\n\n№ карты: {name} Сумма: {summakz}")
 
 def love_foto(msg):
 	if msg.text == "ℹ️ Помощь":
@@ -52,6 +52,9 @@ def love_foto(msg):
 	if msg.text == "🇰🇿 Обмен RUB->KZ":
 		exchange(msg)
 		return
+	if msg.text.isdigit()!=True:
+		bot.send_message(msg.from_user.id, 'Введите номер карты');
+		bot.register_next_step_handler(msg, love_foto)
 	global name;
 	name = msg.text;
 	bot.send_message(msg.from_user.id, 'Введите сумму в рублях');
@@ -67,6 +70,9 @@ def love_foto2(msg):
 	if msg.text == "🇰🇿 Обмен RUB->KZ":
 		exchange(msg)
 		return
+	if msg.text.isdigit()!=True:
+		bot.send_message(msg.from_user.id, 'Введите сумму в рублях');
+		bot.register_next_step_handler(msg, love_foto2)
 	global summakz;
 	summakz = msg.text;
 	
