@@ -35,21 +35,13 @@ def longname(call):
 	a = datetime.datetime.today()
 
 	if call.data == "exchange":
-		sent =bot.send_message(call.message.chat.id, text="Введите номер карты Каспи банка ⬇")
+		sent =bot.send_message(call.message.chat.id, text="Введите номер карты Каспи банка и сумму в рублях ⬇")
 		bot.register_next_step_handler(sent, love_foto)
 		return
 	if call.data == "Отмена":
 		bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Отменено.')
-def love_foto(msg):
-	board = types.InlineKeyboardMarkup()
-	cancel = types.InlineKeyboardButton(text="Отмена", callback_data="Отмена")
-	board.add(cancel)
-
-	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
-	sent =bot.send_message(msg.chat.id, text="Введите сумму в рублях ⬇", reply_markup=cancel)
-	bot.register_next_step_handler(sent, love_foto2)
 		
-def love_foto2(msg):
+def love_foto(msg):
 
 	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
 	bot.send_message(-886511861, f"От: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
