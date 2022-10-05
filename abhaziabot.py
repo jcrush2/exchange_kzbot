@@ -44,14 +44,8 @@ def love_foto(msg):
 	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
 	bot.send_message(-886511861, f"№ карты от: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
 	bot.send_message(msg.chat.id, f"Введите сумму в рублях ⬇", parse_mode="HTML")
-	bot.register_next_step_handler(sent, love_foto2)
-		
-def love_foto2(msg):
 
-	bot.forward_message(-886511861, msg.chat.id, msg.message_id)
-	bot.send_message(-886511861, f"Сумма от: <a href='tg://user?id={msg.from_user.id}'>{msg.from_user.first_name}</a> id: {msg.from_user.id}", parse_mode="HTML")
-	bot.send_message(msg.chat.id, f"️Ваш заказ на обработке.", parse_mode="HTML")
-	return
+		
 		
 
 def helps(msg):
