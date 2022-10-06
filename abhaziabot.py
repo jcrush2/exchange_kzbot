@@ -85,8 +85,8 @@ def love_foto2(msg):
 	summakz[msg.from_user.id] =msg.text
 
 	markup = telebot.types.InlineKeyboardMarkup()
-	button0 = telebot.types.InlineKeyboardButton(text="Оплатил!", callback_data="exchange2")
-	button1 = telebot.types.InlineKeyboardButton(text="Отменить", callback_data="cancel")
+	button0 = telebot.types.InlineKeyboardButton(text="✅ Оплатил!", callback_data="exchange2")
+	button1 = telebot.types.InlineKeyboardButton(text="❌ Отменить", callback_data="cancel")
 	markup.add(button0,button1)
 	
 	bot.send_message(msg.chat.id, f"💳 Отправьте перевод (без комментария) на одну из карт.\n\nТинькофф: <code>5536 9138 9247 9276</code>\nСбер: <code>2202 2001 4949 4179</code>\n\nПосле перевода подтвердите, нажав кнопку ниже ⬇", parse_mode="HTML", reply_markup=markup)
@@ -103,9 +103,9 @@ def helps(msg):
 
 @bot.message_handler(commands=["exchange"])
 def exchange(msg):
-	chanel ="• Курс обмена 7 тенге за 1 рубль\n• Часы работы с 7:00 по 22:00 (мск)\n• Время обработки заявки 3-5 мин.\n• Перевод отправлять без комментария!\n\nМинимальная сумма 500 руб️.️⬇"
+	chanel ="• Курс обмена 7 тенге за 1 рубль\n• Часы работы с 7:00 по 22:00 (мск)\n• Время обработки заявки 3-5 мин.\n• Перевод отправлять без комментария!\n\nМинимальная сумма 500 руб️."
 	markup = telebot.types.InlineKeyboardMarkup()
-	button0 = telebot.types.InlineKeyboardButton(text="Обменять RUB ➡️ KZ", callback_data="exchange")
+	button0 = telebot.types.InlineKeyboardButton(text="➡️ Обменять RUB->KZ", callback_data="exchange")
 
 	markup.add(button0)
 	
