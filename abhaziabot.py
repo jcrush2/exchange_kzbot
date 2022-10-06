@@ -15,7 +15,6 @@ bot = telebot.TeleBot(TELEGRAM_API)
     
 @bot.message_handler(commands=["start"])
 def start(msg):
-	bot.send_message(msg.chat.id, "ℹ️ Добро пожаловать в проверенный сервис обмена рублей на тенге.\n\nКанал с актуальным курсом: @exchange_rub_kz",parse_mode="HTML")
 	
 	main(msg)
 	exchange(msg)
