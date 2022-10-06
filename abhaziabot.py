@@ -8,7 +8,8 @@ import peewee as pw
 import telebot
 
 import config
-
+summakz = {}
+name = {}
 TELEGRAM_API = os.environ["telegram_token"]
 bot = telebot.TeleBot(TELEGRAM_API)
     
@@ -34,16 +35,20 @@ def main(msg):
 def longname(call):
 
 	if call.data == "exchange":
-		sent =bot.send_message(call.message.chat.id, text="Введите номер карты Каспи банка ⬇")
+		sent =bot.send_message(call.message.chat.id, text="💳 Введите номер карты Каспи банка ⬇")
 		bot.register_next_step_handler(sent, love_foto)
 		return
 	if call.data == "cancel":
 		bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Отменено.')
+		name.clear()
+		summakz.clear()
 		return
 	if call.data == "exchange2":
 		
-		bot.send_message(-878312423, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> № карты: {name} Сумма: {summakz} id: {call.from_user.id}", parse_mode="HTML")
-		bot.send_message(call.message.chat.id, f"Обменник: {call.from_user.first_name} ваш заказ на обработке.\n\n№ карты: {name} Сумма: {summakz}\n\nЧтобы ускорить операцию пришлите скриншот оплаты!")
+		bot.send_message(-878312423, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> № карты: {name.get(msg.from_user.id)} Сумма: {summakz.get(msg.from_user.id)} id: {call.from_user.id}", parse_mode="HTML")
+		bot.send_message(call.message.chat.id, f"Обменник: {call.from_user.first_name} ваш заказ на обработке.\n\n№ карты: {name.get(msg.from_user.id)} Сумма: {summakz.get(msg.from_user.id)}\n\nЧтобы ускорить операцию пришлите скриншот оплаты!")
+		name.clear()
+		summakz.clear()
 		return
 
 def love_foto(msg):
@@ -54,11 +59,10 @@ def love_foto(msg):
 		exchange(msg)
 		return
 	if msg.text.isdigit()!=True:
-		bot.send_message(msg.from_user.id, 'Введите номер карты без пробелов');
+		bot.send_message(msg.from_user.id, '💳 Введите номер карты без пробелов');
 		bot.register_next_step_handler(msg, love_foto)
 		return
-	global name;
-	name = msg.text;
+	name[msg.from_user.id] =msg.text
 	bot.send_message(msg.from_user.id, 'Введите сумму в рублях (только цифры) ⬇️');
 	bot.register_next_step_handler(msg, love_foto2);
 	return
@@ -76,15 +80,15 @@ def love_foto2(msg):
 		bot.send_message(msg.from_user.id, 'Введите сумму в рублях (только цифры) ⬇️');
 		bot.register_next_step_handler(msg, love_foto2)
 		return
-	global summakz;
-	summakz = msg.text;
-	
+
+	summakz[msg.from_user.id] =msg.text
+
 	markup = telebot.types.InlineKeyboardMarkup()
 	button0 = telebot.types.InlineKeyboardButton(text="Оплатил!", callback_data="exchange2")
 	button1 = telebot.types.InlineKeyboardButton(text="Отменить", callback_data="cancel")
 	markup.add(button0,button1)
 	
-	bot.send_message(msg.chat.id, f"Отправьте перевод (без комментария) на карту банка Тинькофф: <code>5536 9138 9247 9276</code>\n\nПосле перевода подтвердите, нажав кнопку ниже ⬇", parse_mode="HTML", reply_markup=markup)
+	bot.send_message(msg.chat.id, f"💳 Отправьте перевод (без комментария) на карту банка Тинькофф:\n\n <code>5536 9138 9247 9276</code>\n\nПосле перевода подтвердите, нажав кнопку ниже ⬇", parse_mode="HTML", reply_markup=markup)
 	return
 
 
@@ -94,11 +98,11 @@ def love_foto2(msg):
 		
 @bot.message_handler(commands=["helps"])
 def helps(msg):
-	bot.send_message(msg.chat.id, f"Обмен производиться в ручном режиме.\n\nЧасы работы с 7:00 по 22:00 по мск.\n\nВремя обработки заявки 3-5 мин.\n\nПеревод отправлять без комментария! Заявки с комментарием обрабатываться не будут!\n\nМинимальная сумма обмена 1000 руб️.", parse_mode="HTML")
+	bot.send_message(msg.chat.id, f"ℹ️ Обмен производиться в ручном режиме.\n\nТекущий курс обмена 7 тенге за 1 рубль\n\nЧасы работы с 7:00 по 22:00 по мск.\n\nВремя обработки заявки 3-5 мин.\n\nПеревод отправлять без комментария!\n\nЗаявки с комментарием обрабатываться не будут!\n\nМинимальная сумма обмена 1000 руб️.️", parse_mode="HTML")
 
 @bot.message_handler(commands=["exchange"])
 def exchange(msg):
-	chanel ="Обмен производиться в ручном режиме.\n\nЧасы работы с 7:00 по 22:00 по мск.\n\nВремя обработки заявки 3-5 мин.\n\nПеревод отправлять без комментария! Заявки с комментарием обрабатываться не будут!\n\nМинимальная сумма обмена 1000 руб️."
+	chanel ="ℹ️ Обмен производиться в ручном режиме.\n\nТекущий курс обмена 7 тенге за 1 рубль\n\nЧасы работы с 7:00 по 22:00 по мск.\n\nВремя обработки заявки 3-5 мин.\n\nПеревод отправлять без комментария!\n\nЗаявки с комментарием обрабатываться не будут!\n\nМинимальная сумма обмена 1000 руб️.️"
 	markup = telebot.types.InlineKeyboardMarkup()
 	button0 = telebot.types.InlineKeyboardButton(text="Обменять RUB->KZ", callback_data="exchange")
 
