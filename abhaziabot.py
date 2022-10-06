@@ -15,10 +15,10 @@ bot = telebot.TeleBot(TELEGRAM_API)
     
 @bot.message_handler(commands=["start"])
 def start(msg):
-	bot.send_message(msg.chat.id, "Добро пожаловать в проверенный сервис обмена рублей на тенге",parse_mode="HTML")
+	bot.send_message(msg.chat.id, "Добро пожаловать в проверенный сервис обмена рублей на тенге.\n\nКанал с актуальным курсом: @exchange_rub_kz",parse_mode="HTML")
 	
 	main(msg)
-	
+	exchange(msg)
 		
 @bot.message_handler(commands=["main"])
 def main(msg):
@@ -27,7 +27,7 @@ def main(msg):
 	servise = telebot.types.KeyboardButton(text="ℹ️ Помощь")
 
 	keyboard.add( khvtrip, servise)
-	bot.send_message(msg.chat.id, "Проверенный обменник в Казахстане ⬇️", reply_markup=keyboard)
+	bot.send_message(msg.chat.id, "Проверенный обменник в Казахстане.", reply_markup=keyboard)
 
 	
 	
@@ -100,11 +100,11 @@ def love_foto2(msg):
 		
 @bot.message_handler(commands=["helps"])
 def helps(msg):
-	bot.send_message(msg.chat.id, f"ℹ️ Обмен производиться в ручном режиме.\n\nТекущий курс обмена 7 тенге за 1 рубль\n\nЧасы работы с 7:00 по 22:00 по мск.\n\nВремя обработки заявки 3-5 мин.\n\nПеревод отправлять без комментария!\n\nЗаявки с комментарием обрабатываться не будут!\n\nМинимальная сумма обмена 1000 руб️.️", parse_mode="HTML")
+	bot.send_message(msg.chat.id, f"ℹ️ Обмен производиться в ручном режиме.\n\nТекущий курс обмена 7 тенге за 1 рубль\n\nЧасы работы с 7:00 по 22:00 по мск.\n\nВремя обработки заявки 3-5 мин.\n\nПеревод отправлять без комментария!\n\nЗаявки с комментарием обрабатываться не будут!\n\nМинимальная сумма обмена 500 руб️.\n\nКанал с актуальным курсом: @exchange_rub_kz️", parse_mode="HTML")
 
 @bot.message_handler(commands=["exchange"])
 def exchange(msg):
-	chanel ="ℹ️ Обмен производиться в ручном режиме.\n\nТекущий курс обмена 7 тенге за 1 рубль\n\nЧасы работы с 7:00 по 22:00 по мск.\n\nВремя обработки заявки 3-5 мин.\n\nПеревод отправлять без комментария!\n\nЗаявки с комментарием обрабатываться не будут!\n\nМинимальная сумма обмена 1000 руб️.️"
+	chanel ="ℹ️ Обмен производиться в ручном режиме.\n\nТекущий курс обмена 7 тенге за 1 рубль\n\nЧасы работы с 7:00 по 22:00 по мск.\n\nВремя обработки заявки 3-5 мин.\n\nПеревод отправлять без комментария!\n\nЗаявки с комментарием обрабатываться не будут!\n\nМинимальная сумма обмена 500 руб️.️⬇"
 	markup = telebot.types.InlineKeyboardMarkup()
 	button0 = telebot.types.InlineKeyboardButton(text="Обменять RUB->KZ", callback_data="exchange")
 
