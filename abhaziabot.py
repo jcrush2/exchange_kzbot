@@ -49,6 +49,8 @@ def longname(call):
 
 		name.pop(call.from_user.id)
 		summakz.pop(call.from_user.id)
+		
+		bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Оплатил.')
 
 		return
 
