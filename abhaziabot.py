@@ -90,7 +90,7 @@ def love_foto2(msg):
 	button1 = telebot.types.InlineKeyboardButton(text="Отменить", callback_data="cancel")
 	markup.add(button0,button1)
 	
-	bot.send_message(msg.chat.id, f"💳 Отправьте перевод (без комментария) на карту банка Тинькофф:\n\n <code>5536 9138 9247 9276</code>\n\nПосле перевода подтвердите, нажав кнопку ниже ⬇", parse_mode="HTML", reply_markup=markup)
+	bot.send_message(msg.chat.id, f"💳 Отправьте перевод (без комментария) на одну из карт.\n\nТинькофф: <code>5536 9138 9247 9276</code>\nСбер: <code>2202 2001 4949 4179</code>\n\nПосле перевода подтвердите, нажав кнопку ниже ⬇", parse_mode="HTML", reply_markup=markup)
 	return
 
 
