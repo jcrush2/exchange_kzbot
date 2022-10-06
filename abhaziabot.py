@@ -40,15 +40,17 @@ def longname(call):
 		return
 	if call.data == "cancel":
 		bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Отменено.')
-		name.clear()
-		summakz.clear()
+		name.pop(call.from_user.id)
+		summakz.pop(call.from_user.id)
 		return
 	if call.data == "exchange2":
 		
 		bot.send_message(-878312423, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> № карты: {name.get(call.from_user.id)} Сумма: {summakz.get(call.from_user.id)} id: {call.from_user.id}", parse_mode="HTML")
 		bot.send_message(call.message.chat.id, f"Обменник: {call.from_user.first_name} ваш заказ на обработке.\n\n№ карты: {name.get(call.from_user.id)} Сумма: {summakz.get(call.from_user.id)}\n\nЧтобы ускорить операцию пришлите скриншот оплаты!")
-		name.clear()
-		summakz.clear()
+
+		name.pop(call.from_user.id)
+		summakz.pop(call.from_user.id)
+
 		return
 
 def love_foto(msg):
