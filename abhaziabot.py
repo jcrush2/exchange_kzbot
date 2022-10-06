@@ -32,7 +32,6 @@ def main(msg):
 	
 @bot.callback_query_handler(func=lambda call: True)
 def longname(call):
-	a = datetime.datetime.today()
 
 	if call.data == "exchange":
 		sent =bot.send_message(call.message.chat.id, text="Введите номер карты Каспи банка ⬇")
@@ -40,10 +39,12 @@ def longname(call):
 		return
 	if call.data == "cancel":
 		bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Отменено.')
+		return
 	if call.data == "exchange2":
 		
 		bot.send_message(-878312423, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> № карты: {name} Сумма: {summakz} id: {call.from_user.id}", parse_mode="HTML")
-		bot.send_message(call.message.chat.id, f"Обменник: {call.from_user.first_name} ваш заказ на обработке.\n\n№ карты: {name} Сумма: {summakz}")
+		bot.send_message(call.message.chat.id, f"Обменник: {call.from_user.first_name} ваш заказ на обработке.\n\n№ карты: {name} Сумма: {summakz}\n\nЧтобы ускорить операцию пришлите скриншот оплаты!")
+		return
 
 def love_foto(msg):
 	if msg.text == "ℹ️ Помощь":
@@ -53,12 +54,12 @@ def love_foto(msg):
 		exchange(msg)
 		return
 	if msg.text.isdigit()!=True:
-		bot.send_message(msg.from_user.id, 'Введите номер карты');
+		bot.send_message(msg.from_user.id, 'Введите номер карты без пробелов');
 		bot.register_next_step_handler(msg, love_foto)
 		return
 	global name;
 	name = msg.text;
-	bot.send_message(msg.from_user.id, 'Введите сумму в рублях');
+	bot.send_message(msg.from_user.id, 'Введите сумму в рублях (только цифры) ⬇️');
 	bot.register_next_step_handler(msg, love_foto2);
 	return
 	
@@ -72,7 +73,7 @@ def love_foto2(msg):
 		exchange(msg)
 		return
 	if msg.text.isdigit()!=True:
-		bot.send_message(msg.from_user.id, 'Введите сумму в рублях');
+		bot.send_message(msg.from_user.id, 'Введите сумму в рублях (только цифры) ⬇️');
 		bot.register_next_step_handler(msg, love_foto2)
 		return
 	global summakz;
