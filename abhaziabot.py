@@ -26,7 +26,7 @@ def main(msg):
 	servise = telebot.types.KeyboardButton(text="ℹ️ Помощь")
 
 	keyboard.add( khvtrip, servise)
-	bot.send_message(msg.chat.id, "ℹ️ Добро пожаловать в проверенный сервис обмена рублей на тенге.\n\nКанал с актуальным курсом: @exchange_rub_kz", reply_markup=keyboard)
+	bot.send_message(msg.chat.id, "ℹ️ Добро пожаловать в проверенный сервис обмена рублей на тенге.", reply_markup=keyboard)
 
 	
 	
@@ -101,7 +101,7 @@ def love_foto2(msg):
 		
 @bot.message_handler(commands=["helps"])
 def helps(msg):
-	bot.send_message(msg.chat.id, f"ℹ️ Обмен производиться в ручном режиме.\n\n• Текущий курс обмена 7 тенге за 1 рубль\n\n• Часы работы с 7:00 по 22:00 по мск.\n\n• Время обработки заявки 3-5 мин.\n\n• Перевод отправлять без комментария!\n\n• Заявки с комментарием обрабатываться не будут!\n\n• Минимальная сумма обмена 500 руб️.\n\nКанал с актуальным курсом: @exchange_rub_kz️", parse_mode="HTML")
+	bot.send_message(msg.chat.id, f"ℹ️ Обмен производиться в ручном режиме.\n\n• Текущий курс обмена 7 тенге за 1 рубль\n\n• Часы работы с 7:00 по 22:00 по мск.\n\n• Время обработки заявки 3-5 мин.\n\n• Перевод отправлять без комментария!\n\n• Заявки с комментарием обрабатываться не будут!\n\n• Минимальная сумма обмена 500 руб️.️", parse_mode="HTML")
 
 @bot.message_handler(commands=["exchange"])
 def exchange(msg):
