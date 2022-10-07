@@ -44,7 +44,7 @@ def longname(call):
 		return
 	if call.data == "exchange2":
 		
-		bot.send_message(-878312423, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> № карты: {name.get(call.from_user.id)} Сумма: {summakz.get(call.from_user.id)} id: {call.from_user.id}", parse_mode="HTML")
+		bot.send_message(-1001815989172, f"Оплатил: <a href='tg://user?id={call.from_user.id}'>{call.from_user.first_name}</a> № карты: {name.get(call.from_user.id)} Сумма: {summakz.get(call.from_user.id)} id: {call.from_user.id}", parse_mode="HTML")
 		bot.send_message(call.message.chat.id, f"Обменник: {call.from_user.first_name} ваш заказ на обработке.\n\n№ карты: {name.get(call.from_user.id)} Сумма: {summakz.get(call.from_user.id)}\n\nЧтобы ускорить операцию пришлите скриншот оплаты!")
 
 		name.pop(call.from_user.id)
@@ -115,7 +115,7 @@ def exchange(msg):
 	    
 @bot.message_handler(content_types=['text', 'document', 'photo', 'audio', 'video','voice'])
 def all_messages(msg):
-	TO_CHAT_ID= -878312423
+	TO_CHAT_ID= -1001815989172
 		
 	if msg.text == "ℹ️ Помощь":
 		helps(msg)
